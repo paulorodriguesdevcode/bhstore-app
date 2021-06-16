@@ -1,0 +1,22 @@
+{
+    "extends": "./node_modules/gts/",
+    "plugins": ["react","eslint-plugin-import-helpers"],
+    "rules": {
+      "import-helpers/order-imports": [
+        "warn",
+        {
+          "newlinesBetween": "always",
+          "groups": [
+          "/^react/",
+          "module",
+          ["parent", "sibling", "index"]
+          ],
+          "alphabetize": { "order": "asc", "ignoreCase": true }
+        }
+      ],
+      "prettier/prettier": ["error",{
+        "endOfLine": "auto"}
+      ]
+    }
+  }
+  
