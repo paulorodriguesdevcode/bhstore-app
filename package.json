@@ -11,6 +11,7 @@
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
     "@types/react-router-dom": "^5.1.7",
+    "bootstrap": "4.6.0",
     "gts": "^3.1.0",
     "install": "^0.13.0",
     "node-sass": "5.0.0",
