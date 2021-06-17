@@ -1,5 +1,5 @@
 
-## PT ![image](https://user-images.githubusercontent.com/41118230/122334919-d979da00-cf10-11eb-82b7-28815319f6bd.png)
+## PT 
 
 Nesse projeto, minha intenção é mostrar uma aplicação react funcionando com: 
     - Boostrap
@@ -11,7 +11,7 @@ Demonstro também a parte de consumo de uma api a qual eu mesmo criei em NestJS 
 E ainda, é possível ver como funciona a parte de rota protegida no react.
 Observação: Eu não tenho a intenção de construir uma aplicação com design avançado, o foco aqui é trabalhar mais os conceitos de maneira mais superficial.
 
-## EN ![image](https://user-images.githubusercontent.com/41118230/122334962-e8608c80-cf10-11eb-8dc7-868a247bdb13.png)
+## EN
 
 In this project, my intention is to show a react application working with: 
     - Boostrap
