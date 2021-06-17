@@ -1,64 +1,52 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Button, Modal, Table } from 'react-bootstrap'
 import { AiFillDelete, AiFillEdit } from 'react-icons/ai'
 
+import { findAllStores, deleteStore } from '../../api'
+import { IStore } from '../../models'
 import FormStore from '../FormStore'
 import InputSearchStore from '../InputSearchStore'
-
 import './styles.scss'
 
-const stores = [
-  {
-    key: '1',
-    country: 'BR',
-    state: 'MG',
-    city: 'BH',
-    district: 'pampulha',
-  },
-  {
-    key: '2',
-    country: 'BR',
-    state: 'MG',
-    city: 'BH',
-    district: 'Savassi',
-  },
-  {
-    key: '3',
-    country: 'BR',
-    state: 'MG',
-    city: 'BH',
-    district: 'Horto',
-  },
-]
-
 const MainHome: React.FC = () => {
+  const [stores, setStores] = useState<IStore[] | undefined>()
+
   const handleSearchAndRender = () => {
     alert('procurou e atualizou a table')
   }
-  const handleDelete = (id: string) => {
-    alert(`deletou: ${id}`)
+  const handleDelete = async (id: string) => {
+    await deleteStore(id)
+    loadStoresFromApi()
   }
+  const loadStoresFromApi = async () => {
+    try {
+      const allStores = await findAllStores()
+      setStores(allStores)
+    } catch (error) {
+      console.error('Error when try to get the Stores', error)
+    }
+  }
+
+  useEffect(() => {
+    // Atualiza o titulo do documento usando a API do browser
+    loadStoresFromApi()
+  }, [])
 
   /// modal create
   const [showModalNewStore, setShowModalNewStore] = useState(false)
   const handleCloseModalNewStore = () => setShowModalNewStore(false)
   const handleShowModalNewStore = () => setShowModalNewStore(true)
-  const handleConfirmCreate = () => {
-    alert('confirmou criação')
-    handleCloseModalNewStore()
-  }
 
   /// modal edit
   const [showModalEditStore, setShowModalEditStore] = useState(false)
+  const [idStoreToEdit, setIdStoreToEdit] = useState<undefined | string>(
+    undefined
+  )
   const handleCloseModalEditStore = () => setShowModalEditStore(false)
   const handleShowModalEditStore = (id: string) => {
     // vai carregar o form com o id
-    console.log(id)
+    setIdStoreToEdit(id)
     setShowModalEditStore(true)
-  }
-  const handleConfirmUpdate = () => {
-    alert('confirmou update')
-    handleCloseModalEditStore()
   }
 
   return (
@@ -94,10 +82,10 @@ const MainHome: React.FC = () => {
             {stores.map((store) => (
               <tr key={store.key}>
                 <td>{store.key}</td>
-                <td>{store.country}</td>
-                <td>{store.state}</td>
-                <td>{store.city}</td>
-                <td>{store.district}</td>
+                <td>{store.address.country}</td>
+                <td>{store.address.state}</td>
+                <td>{store.address.city}</td>
+                <td>{store.address.district}</td>
                 <td className='action-icons'>
                   <AiFillEdit
                     className='icon-edit'
@@ -137,16 +125,12 @@ const MainHome: React.FC = () => {
           <Modal.Title>Create a new Store</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <FormStore type='new' />{' '}
+          <FormStore
+            type='new'
+            id={idStoreToEdit}
+            handleCloseModalNewStore={handleCloseModalNewStore}
+          />
         </Modal.Body>
-        <Modal.Footer>
-          <Button variant='danger' onClick={handleCloseModalNewStore}>
-            Close
-          </Button>
-          <Button variant='success' onClick={handleConfirmCreate}>
-            Create
-          </Button>
-        </Modal.Footer>
       </Modal>
 
       {/* edit modal */}
@@ -159,17 +143,12 @@ const MainHome: React.FC = () => {
           <Modal.Title>Edit a Store</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <FormStore type='edit' />
+          <FormStore
+            type='edit'
+            id={idStoreToEdit}
+            handleCloseModalEditStore={handleCloseModalEditStore}
+          />
         </Modal.Body>
-
-        <Modal.Footer>
-          <Button variant='danger' onClick={handleCloseModalEditStore}>
-            Close
-          </Button>
-          <Button variant='success' onClick={handleConfirmUpdate}>
-            Update
-          </Button>
-        </Modal.Footer>
       </Modal>
     </>
   )
