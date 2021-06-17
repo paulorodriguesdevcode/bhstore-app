@@ -3,4 +3,43 @@
 
 .table-list-stores{
   margin-top: pxtorem(100px);
+
+  .action-icons{
+    display: flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    
+    .icon-edit{
+      margin-right: pxtorem(20px);
+    }
+
+  }
+}
+
+.items-input-search{
+  display: flex;
+  justify-content:flex-start;
+  align-items:center;
+  margin-top: pxtorem(30px);
+  
+  button{
+    margin-left: pxtorem(3px);
+    height: pxtorem(50px);
+    margin-top: pxtorem(30px);
+    border-radius:pxtorem(10px);
+    background-color:$color-dark;    
+  }
+}
+
+.msg-error-not-found-stores{
+  margin-top:pxtorem(50px);
+  text-align:center;
+  color :$color-dark;
+}
+
+.btn-new-store{
+  height: pxtorem(50px);
+  margin-top:pxtorem(50px);
+  border-radius:pxtorem(10px);
 }
