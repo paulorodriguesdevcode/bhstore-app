@@ -1,1 +1,16 @@
 @import '../../../src/global.scss';
+
+.input-login{
+        color: $color-dark;
+        height: pxtorem(60px);
+        border: pxtorem(1px) solid $color-dark;
+        border-radius:pxtorem(10px);
+        margin-top: pxtorem(10px);
+        
+        &::placeholder {
+          color: $color-dark;
+          font-family: $font-secondary;
+          font-size: pxtorem(14px);
+        }
+
+}

@@ -1,7 +1,7 @@
 @import '../../global.scss';
 
 .page-all{
-    background: #FFFFFF url("../../assets/background.svg") scroll ;
+    background: #110618   ;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -11,22 +11,35 @@
 
 .main-content{
     margin-top:pxtorem(100px);
-    background-color: #212121;
+    background-color: $color-soft;
 
     display: flex;
     justify-content: center;
     align-items: center;
+    align-content: center;
 
     width:pxtorem(500px);
     height:pxtorem(500px);
 
-    .form-login{
-        display: flex;
-        flex-direction: column;
-        margin:100px;
+    border: pxtorem(1px) solid $color-dark;
+    border-radius:pxtorem(10px);
 
-        .items-form{
-            background-color: red;
-        }
+    .btn-sign-in{
+        margin-top: pxtorem(10px);
+        height: pxtorem(50px);
+        background-color: white;
+        color: $color-soft;
+        font-family: $font-secondary;
+        border: pxtorem(1px) solid $color-dark;
+        border-radius:pxtorem(10px);
+
+        &:hover{
+            background-color:$color-brillant;
+            color:white;
+        }      
+        
     }
+
 }
+
+
