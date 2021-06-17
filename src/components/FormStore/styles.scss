@@ -1,0 +1,16 @@
+@import '../../../src/global.scss';
+
+.input-search-store{
+        color: $color-dark;
+        height: pxtorem(50px);
+        border: pxtorem(1px) solid $color-dark;
+        border-radius:pxtorem(10px);
+        margin-top: pxtorem(30px);
+        
+        &::placeholder {
+          color: $color-dark;
+          font-family: $font-secondary;
+          font-size: pxtorem(14px);
+        }
+
+}

@@ -2,7 +2,9 @@ import React, { useState } from 'react'
 import { Button, Modal, Table } from 'react-bootstrap'
 import { AiFillDelete, AiFillEdit } from 'react-icons/ai'
 
+import FormStore from '../FormStore'
 import InputSearchStore from '../InputSearchStore'
+
 import './styles.scss'
 
 const stores = [
@@ -51,6 +53,7 @@ const MainHome: React.FC = () => {
   const handleCloseModalEditStore = () => setShowModalEditStore(false)
   const handleShowModalEditStore = (id: string) => {
     // vai carregar o form com o id
+    console.log(id)
     setShowModalEditStore(true)
   }
   const handleConfirmUpdate = () => {
@@ -129,7 +132,9 @@ const MainHome: React.FC = () => {
         <Modal.Header closeButton>
           <Modal.Title>Create a new Store</Modal.Title>
         </Modal.Header>
-        <Modal.Body>Here the form</Modal.Body>
+        <Modal.Body>
+          <FormStore type='new' />{' '}
+        </Modal.Body>
         <Modal.Footer>
           <Button variant='danger' onClick={handleCloseModalNewStore}>
             Close
@@ -149,7 +154,10 @@ const MainHome: React.FC = () => {
         <Modal.Header closeButton>
           <Modal.Title>Edit a Store</Modal.Title>
         </Modal.Header>
-        <Modal.Body>Here the form uploaded</Modal.Body>
+        <Modal.Body>
+          <FormStore type='edit' />
+        </Modal.Body>
+
         <Modal.Footer>
           <Button variant='danger' onClick={handleCloseModalEditStore}>
             Close
