@@ -23,13 +23,13 @@ I also demonstrate the consumption part of an api which I created in NestJS whic
 And yet, it is possible to see how the protected route part works in react.
 Note: I don't intend to build an application with advanced design, the focus here is to work more on the concepts in a more superficial way.
 
-# Getting Started with Create React App
+## Getting Started with Create React App
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+### Available Scripts
 In the project directory, you can run:
 
-### `yarn start`
+#### `yarn start`
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
