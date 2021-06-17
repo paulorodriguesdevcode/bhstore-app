@@ -6,16 +6,36 @@ import './styles.scss'
 
 const Login: React.FC = () => {
   return (
-    <div className='col-md-12'>
-      <Form>
-        <InputLogin id='input-email' type='text' name='email' />
+    <div className='container-fluid page-all '>
+      <div className='main-content'>
+        <Form className='form-login col-md-12'>
+          <div className='items-form'>
+            <InputLogin
+              id='input-email'
+              type='text'
+              name='email'
+              placeholder='Email'
+              className='col-md-12'
+            />
 
-        <InputLogin id='input-password' type='password' name='password' />
+            <InputLogin
+              id='input-password'
+              type='password'
+              name='password'
+              placeholder='Password'
+              className='col-md-12'
+            />
 
-        <Button className='btn-purple col-md-12' type='submit' variant='custom'>
-          Sign in
-        </Button>
-      </Form>
+            <Button
+              className='btn-light col-md-12'
+              type='submit'
+              variant='custom'
+            >
+              Sign in
+            </Button>
+          </div>
+        </Form>
+      </div>
     </div>
   )
 }
