@@ -2,35 +2,52 @@ import React from 'react'
 import { Table } from 'react-bootstrap'
 import './styles.scss'
 
+const stores = [
+  {
+    key: 1,
+    uf: 'BR',
+    state: 'MG',
+    city: 'BH',
+    district: 'pampulha',
+  },
+  {
+    key: 2,
+    uf: 'BR',
+    state: 'MG',
+    city: 'BH',
+    district: 'Savassi',
+  },
+  {
+    key: 3,
+    uf: 'BR',
+    state: 'MG',
+    city: 'BH',
+    district: 'Horto',
+  },
+]
+
 const MainHome: React.FC = () => {
   return (
     <Table bordered hover className='table-list-stores'>
       <thead>
         <tr>
-          <th>#</th>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>Username</th>
+          <th>Key</th>
+          <th>UF</th>
+          <th>State</th>
+          <th>City</th>
+          <th>District</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>1</td>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
-        </tr>
-        <tr>
-          <td>2</td>
-          <td>Jacob</td>
-          <td>Thornton</td>
-          <td>@fat</td>
-        </tr>
-        <tr>
-          <td>3</td>
-          <td colSpan='2'>Larry the Bird</td>
-          <td>@twitter</td>
-        </tr>
+        {stores.map((store) => (
+          <tr key={store.key}>
+            <td>{store.key}</td>
+            <td>{store.uf}</td>
+            <td>{store.state}</td>
+            <td>{store.city}</td>
+            <td>{store.district}</td>
+          </tr>
+        ))}
       </tbody>
     </Table>
   )
