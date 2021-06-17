@@ -39,6 +39,7 @@ const FormStore: React.FC<FormStoreProps> = ({ type }) => {
       <Form.Group controlId='form-state'>
         <Form.Label>State</Form.Label>
         <Form.Control as='select' defaultValue={objectOfStore?.state}>
+          <option></option>
           <option>AC</option>
           <option>AL</option>
           <option>AP</option>

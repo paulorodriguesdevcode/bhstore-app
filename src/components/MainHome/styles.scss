@@ -24,7 +24,7 @@
   margin-top: pxtorem(30px);
   
   button{
-    margin-left: pxtorem(3px);
+    margin-left: pxtorem(5px);
     height: pxtorem(50px);
     margin-top: pxtorem(30px);
     border-radius:pxtorem(10px);
@@ -42,4 +42,7 @@
   height: pxtorem(50px);
   margin-top:pxtorem(50px);
   border-radius:pxtorem(10px);
+  background-color:$color-dark !important;  /// 
 }
+
+//I'm using !important because the bootstrap is not local on the machine and I can't rewrite the css class

@@ -1,6 +1,7 @@
 @import '../../../src/global.scss';
 
 .nav-bar-top{
+    background-color: $color-dark !important;
 
     svg{ 
         display: flex;
@@ -9,3 +10,5 @@
         color:$color-white
     }
 }
+
+//I'm using !important because the bootstrap is not local on the machine and I can't rewrite the css class
