@@ -10,21 +10,21 @@ import './styles.scss'
 const stores = [
   {
     key: '1',
-    uf: 'BR',
+    country: 'BR',
     state: 'MG',
     city: 'BH',
     district: 'pampulha',
   },
   {
     key: '2',
-    uf: 'BR',
+    country: 'BR',
     state: 'MG',
     city: 'BH',
     district: 'Savassi',
   },
   {
     key: '3',
-    uf: 'BR',
+    country: 'BR',
     state: 'MG',
     city: 'BH',
     district: 'Horto',
@@ -83,7 +83,7 @@ const MainHome: React.FC = () => {
           <thead>
             <tr>
               <th>Key</th>
-              <th>UF</th>
+              <th>Country</th>
               <th>State</th>
               <th>City</th>
               <th>District</th>
@@ -94,7 +94,7 @@ const MainHome: React.FC = () => {
             {stores.map((store) => (
               <tr key={store.key}>
                 <td>{store.key}</td>
-                <td>{store.uf}</td>
+                <td>{store.country}</td>
                 <td>{store.state}</td>
                 <td>{store.city}</td>
                 <td>{store.district}</td>

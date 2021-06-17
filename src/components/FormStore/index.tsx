@@ -8,7 +8,7 @@ interface FormStoreProps {
 
 interface StoreProps {
   key: string
-  uf: string
+  country: string
   state: string
   city: string
   district: string
@@ -16,7 +16,7 @@ interface StoreProps {
 
 const store = {
   key: '1',
-  uf: 'BR',
+  country: 'BR',
   state: 'MG',
   city: 'BH',
   district: 'pampulha',
@@ -32,7 +32,7 @@ const FormStore: React.FC<FormStoreProps> = ({ type }) => {
         <Form.Label>Key</Form.Label>
         <Form.Control type='text' defaultValue={objectOfStore?.key} />
       </Form.Group>
-      <Form.Group controlId='form-uf'>
+      <Form.Group controlId='form-country'>
         <Form.Label>Uf</Form.Label>
         <Form.Control type='text' defaultValue={objectOfStore?.uf} />
       </Form.Group>
