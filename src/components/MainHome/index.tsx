@@ -1,5 +1,5 @@
-import React from 'react'
-import { Button, Table } from 'react-bootstrap'
+import React, { useState } from 'react'
+import { Button, Modal, Table } from 'react-bootstrap'
 import { AiFillDelete, AiFillEdit } from 'react-icons/ai'
 
 import InputSearchStore from '../InputSearchStore'
@@ -30,16 +30,20 @@ const stores = [
 ]
 
 const MainHome: React.FC = () => {
+  const [show, setShow] = useState(false)
+  const handleClose = () => setShow(false)
+  const handleShow = () => setShow(true)
+
+  const handleSearchAndRender = () => {
+    alert('procurou e atualizou a table')
+  }
+
   const handleDelete = (id: string) => {
     alert(`deletou: ${id}`)
   }
 
   const handleEdit = (id: string) => {
     alert(`editou: ${id}`)
-  }
-
-  const handleCreate = () => {
-    alert('criou novo')
   }
 
   return (
@@ -51,7 +55,9 @@ const MainHome: React.FC = () => {
           type='text'
           placeholder='Type to search a store ..'
         />
-        <Button className='btn btn-dark'>Search</Button>
+        <Button className='btn btn-dark' onClick={handleSearchAndRender}>
+          Search
+        </Button>
       </div>
 
       {stores ? (
@@ -100,10 +106,25 @@ const MainHome: React.FC = () => {
 
       <Button
         className='btn-dark  btn-new-store col-md-12'
-        onClick={handleCreate}
+        onClick={handleShow}
       >
         Click to create a new store
       </Button>
+
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Create a new Store</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Here the form</Modal.Body>
+        <Modal.Footer>
+          <Button variant='danger' onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant='success' onClick={handleClose}>
+            Create
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </>
   )
 }
