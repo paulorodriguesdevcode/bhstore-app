@@ -75,7 +75,11 @@ const MainHome: React.FC = () => {
         </Button>
       </div>
       {stores ? (
-        <Table bordered hover className='table-list-stores col-md-12'>
+        <Table
+          bordered
+          hover
+          className='table-list-stores col-md-12 text-center'
+        >
           <thead>
             <tr>
               <th>Key</th>
