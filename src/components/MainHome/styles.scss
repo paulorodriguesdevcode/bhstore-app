@@ -28,7 +28,7 @@
     height: pxtorem(50px);
     margin-top: pxtorem(30px);
     border-radius:pxtorem(10px);
-    background-color:$color-dark;    
+    background-color:$color-soft;    
   }
 }
 
@@ -42,7 +42,7 @@
   height: pxtorem(50px);
   margin-top:pxtorem(50px);
   border-radius:pxtorem(10px);
-  background-color:$color-dark !important;  /// 
+  background-color:$color-soft !important;  /// 
 }
 
 //I'm using !important because the bootstrap is not local on the machine and I can't rewrite the css class

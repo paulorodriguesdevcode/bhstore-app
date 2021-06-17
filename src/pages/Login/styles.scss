@@ -1,7 +1,7 @@
 @import '../../global.scss';
 
 .page-all{
-    background: #110618   ;
+    background: $color-brillant   ;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -11,7 +11,7 @@
 
 .main-content{
     margin-top:pxtorem(100px);
-    background-color: $color-soft;
+    background-color: $color-white;
 
     display: flex;
     justify-content: center;
@@ -21,7 +21,7 @@
     width:pxtorem(500px);
     height:pxtorem(500px);
 
-    border: pxtorem(1px) solid $color-dark;
+    border: pxtorem(1px) solid $color-soft;
     border-radius:pxtorem(10px);
 
     .btn-sign-in{
@@ -30,10 +30,11 @@
         background-color: white;
         color: $color-soft;
         font-family: $font-secondary;
-        border: pxtorem(1px) solid $color-dark;
+        border: pxtorem(1px) solid $color-soft;
         border-radius:pxtorem(10px);
 
         &:hover{
+            transition-delay: 0.10ms;
             background-color:$color-brillant;
             color:$color-white;
         }      

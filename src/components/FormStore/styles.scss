@@ -1,14 +1,14 @@
 @import '../../../src/global.scss';
 
 .input-search-store{
-        color: $color-dark;
+        color: $color-soft;;
         height: pxtorem(50px);
-        border: pxtorem(1px) solid $color-dark;
+        border: pxtorem(1px) solid $color-soft;
         border-radius:pxtorem(10px);
         margin-top: pxtorem(30px);
         
         &::placeholder {
-          color: $color-dark;
+          color: $color-soft;
           font-family: $font-secondary;
           font-size: pxtorem(14px);
         }
