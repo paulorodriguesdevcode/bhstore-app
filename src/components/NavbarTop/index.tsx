@@ -16,8 +16,7 @@ const NavbarTop: React.FC = () => {
   return (
     <>
       <Navbar variant='dark' className=' navbar  nav-bar-top'>
-        <Navbar.Brand href='/home'>BHStore - Useful Management</Navbar.Brand>
-        <CgLogOff size={'25px'} onClick={logOff} />
+        <CgLogOff size={'50px'} onClick={logOff} title={'Click to logoff'} />
       </Navbar>
     </>
   )

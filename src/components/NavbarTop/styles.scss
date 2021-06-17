@@ -2,12 +2,15 @@
 
 .nav-bar-top{
     background-color: $color-dark !important;
+    display: flex !important;
+    justify-content: center !important;
 
     svg{ 
         display: flex;
         align-items: center;
         justify-content: flex-end;
-        color:$color-white
+        color:$color-white;
+        cursor:pointer;
     }
 }
 
