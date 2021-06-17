@@ -1,0 +1,11 @@
+@import '../../../src/global.scss';
+
+.nav-bar-top{
+
+    svg{ 
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        color:$color-white
+    }
+}
