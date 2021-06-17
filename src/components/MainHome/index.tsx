@@ -30,20 +30,32 @@ const stores = [
 ]
 
 const MainHome: React.FC = () => {
-  const [show, setShow] = useState(false)
-  const handleClose = () => setShow(false)
-  const handleShow = () => setShow(true)
-
   const handleSearchAndRender = () => {
     alert('procurou e atualizou a table')
   }
-
   const handleDelete = (id: string) => {
     alert(`deletou: ${id}`)
   }
 
-  const handleEdit = (id: string) => {
-    alert(`editou: ${id}`)
+  /// modal create
+  const [showModalNewStore, setShowModalNewStore] = useState(false)
+  const handleCloseModalNewStore = () => setShowModalNewStore(false)
+  const handleShowModalNewStore = () => setShowModalNewStore(true)
+  const handleConfirmCreate = () => {
+    alert('confirmou criação')
+    handleCloseModalNewStore()
+  }
+
+  /// modal edit
+  const [showModalEditStore, setShowModalEditStore] = useState(false)
+  const handleCloseModalEditStore = () => setShowModalEditStore(false)
+  const handleShowModalEditStore = (id: string) => {
+    // vai carregar o form com o id
+    setShowModalEditStore(true)
+  }
+  const handleConfirmUpdate = () => {
+    alert('confirmou update')
+    handleCloseModalEditStore()
   }
 
   return (
@@ -59,7 +71,6 @@ const MainHome: React.FC = () => {
           Search
         </Button>
       </div>
-
       {stores ? (
         <Table bordered hover className='table-list-stores col-md-12'>
           <thead>
@@ -83,7 +94,7 @@ const MainHome: React.FC = () => {
                 <td className='action-icons'>
                   <AiFillEdit
                     className='icon-edit'
-                    onClick={() => handleEdit(store.key)}
+                    onClick={() => handleShowModalEditStore(store.key)}
                     size={'20px'}
                     title={`Click to remove the store ${store.key}`}
                   />
@@ -103,25 +114,48 @@ const MainHome: React.FC = () => {
           Sorry, no records match your search
         </p>
       )}
-
       <Button
         className='btn-dark  btn-new-store col-md-12'
-        onClick={handleShow}
+        onClick={handleShowModalNewStore}
       >
         Click to create a new store
       </Button>
-
-      <Modal show={show} onHide={handleClose}>
+      {/* new modal */}
+      <Modal
+        name='new-store'
+        show={showModalNewStore}
+        onHide={handleCloseModalNewStore}
+      >
         <Modal.Header closeButton>
           <Modal.Title>Create a new Store</Modal.Title>
         </Modal.Header>
         <Modal.Body>Here the form</Modal.Body>
         <Modal.Footer>
-          <Button variant='danger' onClick={handleClose}>
+          <Button variant='danger' onClick={handleCloseModalNewStore}>
             Close
           </Button>
-          <Button variant='success' onClick={handleClose}>
+          <Button variant='success' onClick={handleConfirmCreate}>
             Create
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+      {/* edit modal */}
+      <Modal
+        name='edit-store'
+        show={showModalEditStore}
+        onHide={handleCloseModalEditStore}
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>Edit a Store</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Here the form uploaded</Modal.Body>
+        <Modal.Footer>
+          <Button variant='danger' onClick={handleCloseModalEditStore}>
+            Close
+          </Button>
+          <Button variant='success' onClick={handleConfirmUpdate}>
+            Update
           </Button>
         </Modal.Footer>
       </Modal>
