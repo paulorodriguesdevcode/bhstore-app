@@ -46,7 +46,9 @@ const FormStore: React.FC<FormStoreProps> = ({
   const insertStoreInApi = async (store: IStore) => {
     try {
       await insertStore(store)
+      alert('success')
     } catch (error) {
+      alert('error')
       console.error('error', error)
     }
   }
