@@ -3,6 +3,13 @@ Nesse projeto, minha intenção é mostrar uma aplicação react funcionando com
 - Saas 
 -  Axios 
 
+Para logar na aplicação utilize:
+  
+      username: 'paulo', |  password: '1234', 
+      ou  
+      username: 'valesca', password: '1234',
+  
+
 Demonstro também a parte de consumo de uma api a qual eu mesmo criei em NestJS que pode ser vista no endereço: https://github.com/paulocatnya/bhstoreapi. E ainda, é possível ver como funciona a parte de rota protegida no react. Observação: Eu não tenho a intenção de construir uma aplicação com design avançado, o foco aqui é trabalhar mais os conceitos de maneira mais superficial.
 
 Esse projeto consome a API --> https://github.com/paulocatnya/bhstoreapi
