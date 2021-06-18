@@ -45,9 +45,11 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 - Update table after update of stores
 - Update a store
 - Find store by address
+- Swagger
 
 ### Melhorias e correções futuras
 - Corrigir login de layout
 - Atualizar tabela após atualização das lojas
 - Atualizar a loja
 - Encontrar loja por endereço
+- Swagger
