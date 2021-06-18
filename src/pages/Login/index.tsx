@@ -1,28 +1,48 @@
 import React from 'react'
 import { Form, Button } from 'react-bootstrap'
+import { useForm } from 'react-hook-form'
 import { useHistory } from 'react-router-dom'
 
+import { signin } from '../../api'
 import InputLogin from '../../components/InputLogin'
+import { IUser } from '../../models'
+
 import './styles.scss'
 
 const Login: React.FC = () => {
   const history = useHistory()
+  const {
+    register,
+    handleSubmit,
+    //formState: { errors },
+  } = useForm()
 
-  const handleOnSubmit = () => {
-    console.log('validar usuario')
-    history.replace('/home')
+  const onSubmit = (data: IUser) => {
+    console.log('Bateu no submit', data)
+    login(data)
+  }
+
+  const login = async (data: IUser) => {
+    try {
+      await signin(data)
+      history.replace('/home')
+    } catch (err) {
+      alert('Login failed')
+      console.log(err)
+    }
   }
 
   return (
     <div className='container-fluid page-all '>
       <div className='main-content'>
-        <Form className='col-md-12' onSubmit={handleOnSubmit}>
+        <Form className='col-md-12' onSubmit={handleSubmit(onSubmit)}>
           <InputLogin
-            id='input-email'
+            id='input-username'
             type='text'
-            name='email'
-            placeholder='Email'
+            name='username'
+            placeholder='username'
             className='col-md-12 input-login'
+            {...register('username')}
           />
 
           <InputLogin
@@ -31,6 +51,7 @@ const Login: React.FC = () => {
             name='password'
             placeholder='Password'
             className='col-md-12 input-login'
+            {...register('password')}
           />
 
           <Button

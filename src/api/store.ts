@@ -1,5 +1,4 @@
-import { IStore } from 'models'
-
+import { IStore } from '../models/'
 import api from './api'
 
 export const insertStore = async (store: IStore) => {
