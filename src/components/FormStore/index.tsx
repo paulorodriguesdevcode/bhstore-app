@@ -2,7 +2,7 @@ import React, { MouseEventHandler, useEffect, useState } from 'react'
 import { Button, Form } from 'react-bootstrap'
 import { useForm } from 'react-hook-form'
 
-import { findOneStore, insertStore } from '../../api'
+import { findOneStore, insertStore, updateStore } from '../../api'
 import { IStore, IAddress } from '../../models'
 import './styles.scss'
 
@@ -46,7 +46,17 @@ const FormStore: React.FC<FormStoreProps> = ({
   const insertStoreInApi = async (store: IStore) => {
     try {
       await insertStore(store)
-      alert('success')
+      alert('success inser')
+    } catch (error) {
+      alert('error')
+      console.error('error', error)
+    }
+  }
+
+  const updateStoreInApi = async (id: string, store: IStore) => {
+    try {
+      await updateStore(id, store)
+      alert('success update')
     } catch (error) {
       alert('error')
       console.error('error', error)
@@ -72,6 +82,8 @@ const FormStore: React.FC<FormStoreProps> = ({
   const objectOfStore = returnFindOneList && returnFindOneList[0]
 
   const onSubmit = (data: IFormPropsPost) => {
+    console.log('chegou no onsubmit::: ', type)
+
     const newStore: IStore = {}
     newStore.key = data.key
 
@@ -83,7 +95,13 @@ const FormStore: React.FC<FormStoreProps> = ({
 
     newStore.address = address
 
-    insertStoreInApi(newStore)
+    if (type === 'edit') {
+      updateStoreInApi(id, newStore)
+    }
+
+    if (type === 'new') {
+      insertStoreInApi(newStore)
+    }
   }
 
   return (
@@ -94,7 +112,7 @@ const FormStore: React.FC<FormStoreProps> = ({
           <Form.Control
             type='text'
             defaultValue={objectOfStore?.key}
-            {...register('key')}
+            {...register('key', { required: true })}
           />
           {errors.key && (
             <span className='error-validation'>This field key is required</span>
@@ -105,8 +123,8 @@ const FormStore: React.FC<FormStoreProps> = ({
           <Form.Label>Country</Form.Label>
           <Form.Control
             type='text'
-            defaultValue={objectOfStore?.address?.country.toString()}
-            {...register('country')}
+            defaultValue={objectOfStore?.address?.country}
+            {...register('country', { required: true })}
           />
           {errors.country && (
             <span className='error-validation'>
@@ -161,7 +179,7 @@ const FormStore: React.FC<FormStoreProps> = ({
           <Form.Control
             type='text'
             defaultValue={objectOfStore?.address?.city}
-            {...register('city')}
+            {...register('city', { required: true })}
           />
           {errors.city && (
             <span className='error-validation'>
@@ -174,7 +192,7 @@ const FormStore: React.FC<FormStoreProps> = ({
           <Form.Control
             type='text'
             defaultValue={objectOfStore?.address?.district}
-            {...register('district')}
+            {...register('district', { required: true })}
           />
           {errors.district && (
             <span className='error-validation'>
