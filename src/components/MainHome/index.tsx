@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { Button, Modal, Table } from 'react-bootstrap'
+import { useForm } from 'react-hook-form'
 import { AiFillDelete, AiFillEdit } from 'react-icons/ai'
 
-import { findAllStores, deleteStore } from '../../api'
+import { findAllStores, deleteStore, findOneStore } from '../../api'
 import { IStore } from '../../models'
 import FormStore from '../FormStore'
 import InputSearchStore from '../InputSearchStore'
@@ -11,9 +12,6 @@ import './styles.scss'
 const MainHome: React.FC = () => {
   const [stores, setStores] = useState<IStore[] | undefined>()
 
-  const handleSearchAndRender = () => {
-    alert('procurou e atualizou a table')
-  }
   const handleDelete = async (id: string) => {
     await deleteStore(id)
     loadStoresFromApi()
@@ -27,41 +25,61 @@ const MainHome: React.FC = () => {
     }
   }
 
+  const loadOneStoreFromApi = async (key: string) => {
+    try {
+      const oneStore = await findOneStore(key)
+      setStores(oneStore)
+    } catch (error) {
+      console.error('Error when try to get the Store', error)
+    }
+  }
+
   useEffect(() => {
-    // Atualiza o titulo do documento usando a API do browser
     loadStoresFromApi()
   }, [])
 
-  /// modal create
   const [showModalNewStore, setShowModalNewStore] = useState(false)
   const handleCloseModalNewStore = () => setShowModalNewStore(false)
   const handleShowModalNewStore = () => setShowModalNewStore(true)
 
-  /// modal edit
   const [showModalEditStore, setShowModalEditStore] = useState(false)
   const [idStoreToEdit, setIdStoreToEdit] = useState<undefined | string>(
     undefined
   )
   const handleCloseModalEditStore = () => setShowModalEditStore(false)
   const handleShowModalEditStore = (id: string) => {
-    // vai carregar o form com o id
     setIdStoreToEdit(id)
     setShowModalEditStore(true)
   }
 
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm()
+
+  const onSubmit = (data) => {
+    loadOneStoreFromApi(data.key)
+  }
+
   return (
     <>
-      <div className='items-input-search col-md-12 '>
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className='items-input-search col-md-12'
+      >
         <InputSearchStore
           id='input-search'
           name='input-search'
           type='text'
-          placeholder='Type to search a store ..'
+          placeholder='Type to search a store by Key..'
+          {...register('key', { required: true })}
         />
-        <Button className='btn btn-dark' onClick={handleSearchAndRender}>
+        <Button type='submit' className='btn btn-dark'>
           Search
         </Button>
-      </div>
+      </form>
+
       {stores ? (
         <Table
           bordered

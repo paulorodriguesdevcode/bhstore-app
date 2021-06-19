@@ -9,8 +9,8 @@ export const findAllStores = async () => {
   return (await api.get<IStore[]>('/'))?.data
 }
 
-export const findOneStore = async (id: string) => {
-  return (await api.get<IStore>(`/${id}`))?.data
+export const findOneStore = async (key: string) => {
+  return (await api.get<IStore[]>(`/${key}`))?.data
 }
 
 export const deleteStore = async (id: string) => {
