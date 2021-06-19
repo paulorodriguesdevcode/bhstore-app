@@ -26,6 +26,10 @@ const MainHome: React.FC = () => {
   }
 
   const loadOneStoreFromApi = async (key: string) => {
+    if (!key) {
+      loadStoresFromApi()
+      return
+    }
     try {
       const oneStore = await findOneStore(key)
       setStores(oneStore)
@@ -38,16 +42,19 @@ const MainHome: React.FC = () => {
     loadStoresFromApi()
   }, [])
 
+  /// modal create
   const [showModalNewStore, setShowModalNewStore] = useState(false)
   const handleCloseModalNewStore = () => setShowModalNewStore(false)
   const handleShowModalNewStore = () => setShowModalNewStore(true)
 
+  /// modal edit
   const [showModalEditStore, setShowModalEditStore] = useState(false)
   const [idStoreToEdit, setIdStoreToEdit] = useState<undefined | string>(
     undefined
   )
   const handleCloseModalEditStore = () => setShowModalEditStore(false)
   const handleShowModalEditStore = (id: string) => {
+    // vai carregar o form com o id
     setIdStoreToEdit(id)
     setShowModalEditStore(true)
   }
@@ -73,14 +80,14 @@ const MainHome: React.FC = () => {
           name='input-search'
           type='text'
           placeholder='Type to search a store by Key..'
-          {...register('key', { required: true })}
+          {...register('key')}
         />
         <Button type='submit' className='btn btn-dark'>
           Search
         </Button>
       </form>
 
-      {stores ? (
+      {stores && stores.length > 0 ? (
         <Table
           bordered
           hover
